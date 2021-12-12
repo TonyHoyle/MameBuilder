@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<xs:schema xmlns="http://tempuri.org/datafile" elementFormDefault="qualified" targetNamespace="http://tempuri.org/datafile" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="mame">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" ref="game" />
+			</xs:sequence>
+			<xs:attribute name="build" type="xs:string" />
+			<xs:attribute default="no" name="debug">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="mameconfig" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="game">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="description" />
+				<xs:element minOccurs="0" maxOccurs="1" ref="year" />
+				<xs:element ref="manufacturer" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="biosset" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="rom" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="disk" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="sample" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="chip" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="display" />
+				<xs:element minOccurs="0" maxOccurs="1" ref="sound" />
+				<xs:element minOccurs="0" maxOccurs="1" ref="input" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="dipswitch" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="configuration" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="category" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="adjuster" />
+				<xs:element minOccurs="0" maxOccurs="1" ref="driver" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="device" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="softwarelist" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="sourcefile" type="xs:string" />
+			<xs:attribute default="no" name="isbios">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute default="yes" name="runnable">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="cloneof" type="xs:string" />
+			<xs:attribute name="romof" type="xs:string" />
+			<xs:attribute name="sampleof" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="description" type="xs:string" />
+	<xs:element name="year" type="xs:string" />
+	<xs:element name="manufacturer" type="xs:string" />
+	<xs:element name="biosset">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="description" type="xs:string" use="required" />
+			<xs:attribute default="no" name="default">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rom">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="bios" type="xs:string" />
+			<xs:attribute name="size" type="xs:string" use="required" />
+			<xs:attribute name="crc" type="xs:string" />
+			<xs:attribute name="md5" type="xs:string" />
+			<xs:attribute name="sha1" type="xs:string" />
+			<xs:attribute name="merge" type="xs:string" />
+			<xs:attribute name="region" type="xs:string" />
+			<xs:attribute name="offset" type="xs:string" />
+			<xs:attribute default="good" name="status">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="baddump" />
+						<xs:enumeration value="nodump" />
+						<xs:enumeration value="good" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute default="no" name="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="disk">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="md5" type="xs:string" />
+			<xs:attribute name="sha1" type="xs:string" />
+			<xs:attribute name="merge" type="xs:string" />
+			<xs:attribute name="region" type="xs:string" />
+			<xs:attribute name="index" type="xs:string" />
+			<xs:attribute default="good" name="status">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="baddump" />
+						<xs:enumeration value="nodump" />
+						<xs:enumeration value="good" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute default="no" name="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sample">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chip">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="tag" type="xs:string" />
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="cpu" />
+						<xs:enumeration value="audio" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="clock" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="display">
+		<xs:complexType>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="raster" />
+						<xs:enumeration value="vector" />
+						<xs:enumeration value="lcd" />
+						<xs:enumeration value="unknown" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="rotate" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="0" />
+						<xs:enumeration value="90" />
+						<xs:enumeration value="180" />
+						<xs:enumeration value="270" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute default="no" name="flipx">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="width" type="xs:string" />
+			<xs:attribute name="height" type="xs:string" />
+			<xs:attribute name="refresh" type="xs:string" use="required" />
+			<xs:attribute name="pixclock" type="xs:string" />
+			<xs:attribute name="htotal" type="xs:string" />
+			<xs:attribute name="hbend" type="xs:string" />
+			<xs:attribute name="hbstart" type="xs:string" />
+			<xs:attribute name="vtotal" type="xs:string" />
+			<xs:attribute name="vbend" type="xs:string" />
+			<xs:attribute name="vbstart" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sound">
+		<xs:complexType>
+			<xs:attribute name="channels" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="control" />
+			</xs:sequence>
+			<xs:attribute default="no" name="service">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute default="no" name="tilt">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="players" type="xs:string" use="required" />
+			<xs:attribute name="buttons" type="xs:string" />
+			<xs:attribute name="coins" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="control">
+		<xs:complexType>
+			<xs:attribute name="type" type="xs:string" use="required" />
+			<xs:attribute name="minimum" type="xs:string" />
+			<xs:attribute name="maximum" type="xs:string" />
+			<xs:attribute name="sensitivity" type="xs:string" />
+			<xs:attribute name="keydelta" type="xs:string" />
+			<xs:attribute default="no" name="reverse">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dipswitch">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="dipvalue" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="tag" type="xs:string" use="required" />
+			<xs:attribute name="mask" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dipvalue">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="value" type="xs:string" use="required" />
+			<xs:attribute default="no" name="default">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="configuration">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="confsetting" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="tag" type="xs:string" use="required" />
+			<xs:attribute name="mask" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="confsetting">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="value" type="xs:string" use="required" />
+			<xs:attribute default="no" name="default">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="category">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="item" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="item">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute default="no" name="default">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="adjuster">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="default" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="driver">
+		<xs:complexType>
+			<xs:attribute name="status" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="good" />
+						<xs:enumeration value="imperfect" />
+						<xs:enumeration value="preliminary" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="emulation" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="good" />
+						<xs:enumeration value="imperfect" />
+						<xs:enumeration value="preliminary" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="color" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="good" />
+						<xs:enumeration value="imperfect" />
+						<xs:enumeration value="preliminary" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="sound" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="good" />
+						<xs:enumeration value="imperfect" />
+						<xs:enumeration value="preliminary" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="graphic" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="good" />
+						<xs:enumeration value="imperfect" />
+						<xs:enumeration value="preliminary" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="cocktail">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="good" />
+						<xs:enumeration value="imperfect" />
+						<xs:enumeration value="preliminary" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="protection">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="good" />
+						<xs:enumeration value="imperfect" />
+						<xs:enumeration value="preliminary" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="savestate" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="supported" />
+						<xs:enumeration value="unsupported" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="palettesize" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="device">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="instance" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="extension" />
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="required" />
+			<xs:attribute name="tag" type="xs:string" />
+			<xs:attribute name="mandatory" type="xs:string" />
+			<xs:attribute name="interface" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="instance">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="briefname" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="extension">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="softwarelist">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
