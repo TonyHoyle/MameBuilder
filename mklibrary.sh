@@ -1,5 +1,5 @@
 #!/bin/bash
-ROMS="${PWD}/$1/roms"
+ROMS="$1"
 DEST="/raid/mame/library"
 IFS=$'\n'
 for i in $ROMS/*.{zip,7z}; do

@@ -24,19 +24,19 @@ namespace MameBuilder
         public bool BadRom { get; set; }
 
         [Value(0, MetaName = "datfile", HelpText = "DAT/XML file")]
-        public string DatFile { get; set; }
+        public string DatFile { get; set; } = "";
 
         [Option('l', "librarypath", Default = "library", HelpText = "MAME Library Path")]
-        public string LibraryPath { get; set; }
+        public string LibraryPath { get; set; } = "";
 
         [Option('v', "verbose", Default = false, HelpText = "Verbose output")]
         public bool Verbose { get; set; }
 
         [Option('t', "targetpath", Default = "", HelpText = "Target Directory")]
-        public string TargetPath { get; set; }
+        public string TargetPath { get; set; } = "";
 
         [Option('r', "rommode", Default = RomModeEnum.NonMerged, HelpText = "ROM mode (Merged,Split,NonMerged)")]
-        public RomModeEnum RomMode { get; set; }
+        public RomModeEnum RomMode { get; set; } = RomModeEnum.NonMerged;
 
         [Option("nosplitbios", Default = false, HelpText = "Don't Split BIOS")]
         public bool NoSplitBios { get; set; }
@@ -277,7 +277,7 @@ namespace MameBuilder
                                         file.CopyTo(stream);
                                     count++;
                                 }
-                                else
+                                else if(!string.IsNullOrEmpty(game.Sampleof))
                                 {
                                     missingSamples[game.Sampleof] = 1;
                                     Console.WriteLine(sample.Name + " missing sample");
@@ -327,7 +327,7 @@ namespace MameBuilder
             var fs = new FileStream(filename, FileMode.Open);
             var settings = new XmlReaderSettings() { DtdProcessing = DtdProcessing.Ignore };
             var reader = XmlReader.Create(fs, settings);
-            var dat = (Mame)serializer.Deserialize(reader);
+            var dat = (Mame)serializer.Deserialize(reader)!;
             fs.Close();
             return dat;
         }
@@ -337,7 +337,7 @@ namespace MameBuilder
             bool bad = game.Rom == null;
             if (!BadRom && !bad)
             {
-                foreach (var rom in game.Rom)
+                foreach (var rom in game.Rom!)
                 {
                     if (rom.Status == RomStatus.Baddump)
                         bad = true;

@@ -1,5 +1,5 @@
 #!/bin/bash
-SAMPLES="$1/samples"
+SAMPLES="$1"
 DEST="/raid/mame/library/samples"
 IFS=$'\n'
 for i in $SAMPLES/*.zip; do
